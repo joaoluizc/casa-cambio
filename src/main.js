@@ -11,7 +11,7 @@ const createRate = (rate, taxa) => {
   const moedaEl = document.createElement("p");
   const taxaEl = document.createElement("p");
   moedaEl.innerHTML = rate;
-  taxaEl.innerHTML = parseFloat(taxa).toFixed(3) ;
+  taxaEl.innerHTML = parseFloat(taxa).toFixed(3);
 
   div.appendChild(moedaEl);
   div.appendChild(taxaEl);
@@ -20,11 +20,13 @@ const createRate = (rate, taxa) => {
 
 btn.addEventListener('click', (event) => {
   const moeda = input.value;
-  if (!moeda) throw new Error('Você precisa passar uma moeda');
+  // if (!moeda) throw new Error('Você precisa passar uma moeda');
   fetch(`https://api.exchangerate.host/latest?base=${moeda}`)
     .then((result) => result.json())
     .then((data) => {
+  if (!moeda) throw new Error('Você precisa passar uma moeda');
       const keys = Object.keys(data.rates);
+      if (!moeda) throw new Error('Você precisa passar uma moeda');
       if (!keys.includes(moeda)) throw new Error('Moeda não existente');
       keys.forEach((rateAbr) => {
         createRate(rateAbr, data.rates[rateAbr])
@@ -35,5 +37,5 @@ btn.addEventListener('click', (event) => {
       text: error.message,
       icon: 'error',
       confirmButtonText: 'Cool',
-    }))
+    }));
 }) 
