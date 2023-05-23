@@ -16,6 +16,12 @@ body {
   margin-top: 50px;
   height: 500px;
   width: 80vw;
+  display: flex;
+  padding: 2%;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 header {
@@ -29,9 +35,27 @@ l {
 #search {
   margin-left: 2px;
   background-color: #22cf39;
+  color: black;
   border: 0cm;
 }
 
 #search:hover {
   background-color: #229b32;
+}
+
+.taxa-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  width: 130px;
+  height: 50px;
+  padding: 10px;
+  gap: 5px;
+  border-radius: 10px;
+  font-size: 14px;
+  align-items: center;
+  justify-content:center;
+}
+
+.taxa-container p {
+  margin: 0;
 }

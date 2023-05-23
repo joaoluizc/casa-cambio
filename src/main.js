@@ -6,10 +6,11 @@ const section = document.querySelector("section");
 
 const createRate = (rate, taxa) => {
   const div = document.createElement("div");
+  div.classList.add('taxa-container');
   const moedaEl = document.createElement("p");
   const taxaEl = document.createElement("p");
   moedaEl.innerHTML = rate;
-  taxaEl.innerHTML = taxa;
+  taxaEl.innerHTML = parseFloat(taxa).toFixed(3) ;
 
   div.appendChild(moedaEl);
   div.appendChild(taxaEl);
