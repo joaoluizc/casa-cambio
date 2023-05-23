@@ -1,4 +1,5 @@
 import "./createRate.js";
+import Swal from 'sweetalert2';
 
 const btn = document.querySelector("#search");
 const input = document.querySelector("input");
@@ -19,12 +20,20 @@ const createRate = (rate, taxa) => {
 
 btn.addEventListener('click', (event) => {
   const moeda = input.value;
+  if (!moeda) throw new Error('Você precisa passar uma moeda');
   fetch(`https://api.exchangerate.host/latest?base=${moeda}`)
     .then((result) => result.json())
     .then((data) => {
       const keys = Object.keys(data.rates);
+      if (!keys.includes(moeda)) throw new Error('Moeda não existente');
       keys.forEach((rateAbr) => {
         createRate(rateAbr, data.rates[rateAbr])
       })
-    });
+    })
+    .catch((error) => Swal.fire({
+      title: 'oops',
+      text: error.message,
+      icon: 'error',
+      confirmButtonText: 'Cool',
+    }))
 }) 
